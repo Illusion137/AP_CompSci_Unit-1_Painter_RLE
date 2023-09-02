@@ -1,0 +1,21 @@
+  public void paintRLEVertical(){
+    //painting vertically so face south :3
+    this.turnToDir("south");
+    int col = 0;
+    //while we haven't traveled through all the RLE's(Run length Encoded) Data
+    for(int i = 0; i < rlePixels.length; i++){
+      //while we haven't traveled through the entire length of the RLE
+      for(int traveled = 0; traveled < rlePixels[i].len; traveled++){
+        //paint the RLE color
+        this.paint(rlePixels[i].color);
+        if(this.canMove()) 
+          this.move();
+        else{ //if can't move go to beginning of next row
+          col++;
+          if(col >= this.gsize)
+            return;
+          this.moveToPos(col, 0, "south");
+        }
+      }
+    }
+  }
