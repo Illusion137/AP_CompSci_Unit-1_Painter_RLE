@@ -35,7 +35,7 @@ size_t get_file_size(FILE* file) {
 }
 
 #define RLE_HORIZONTAL
-#define DEBUG_IMAGE_PIXELS
+// #define DEBUG_IMAGE_PIXELS
 
 #define OUTPUT_FILE "./RunLengthEncodedPainter.java"
 
@@ -50,7 +50,7 @@ int main() {
     Pixel* rImage = (Pixel*)calloc(IMAGE_SIZE, sizeof(Pixel)); // allocate on heap incase of large image :3
     { // BMP to Pixels -> Reverse Row Order 
         FILE* bmpFile;
-        bmpFile = fopen("./ralsei.bmp", "r");
+        bmpFile = fopen("./kirbs.bmp", "r");
 
         if (!bmpFile){ //If bmpFile fails to open
             printf("Failed to open file.\n");
@@ -220,7 +220,7 @@ public final String[] p = {\n"
         free(rleImg); //FREE IT, FREE THE HEAP MEMORY
         fprintf(outFile, "\n  };\n");
         printf("$%u\n", lenChk);
-        assert(lenChk > IMAGE_SIZE && "FAILED TO RLE BMP.");
+        assert(lenChk >= IMAGE_SIZE && "FAILED TO RLE BMP.");
     }
 
     { // Add Vert/Horz Method to file
